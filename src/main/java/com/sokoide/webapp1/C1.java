@@ -53,13 +53,13 @@ public class C1 {
         props.put("name", "random service");
         props.put("sleep-ms", String.valueOf(r));
         telemetry.trackTrace("random properties info",
-                SeverityLevel.Information
+                SeverityLevel.Information,
                 props);
         telemetry.trackTrace("random properties warn",
                 SeverityLevel.Warning,
                 props);
         telemetry.trackTrace("random properties error",
-                SeverityLevel.Error
+                SeverityLevel.Error,
                 props);
 
         try {
