@@ -13,23 +13,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@master
 
-    - name: Set up Java version
-      uses: actions/setup-java@v1
-      with:
-        java-version: '11'
+      - name: Set up Java version
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
 
-#    - name: Build with Maven
-#      run: mvn clean install
+      #    - name: Build with Maven
+      #      run: mvn clean install
 
-    - name: Build with Gradle
-      run: ./gradlew bootJar
+      - name: Build with Gradle
+        run: ./gradlew bootJar
 
-    - name: Deploy to Azure Web App
-      uses: azure/webapps-deploy@v2
-      with:
-        app-name: 'sokoide-webapp1'
-        slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_94ac15b67ba64d048d9cc38ca8a48e7a }}
-        package: '${{ github.workspace }}/target/*.jar'
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'sokoide-webapp1'
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_94ac15b67ba64d048d9cc38ca8a48e7a }}
+#          package: '${{ github.workspace }}/target/*.jar'
+          package: '${{ github.workspace }}/build/libs/*.jar'
