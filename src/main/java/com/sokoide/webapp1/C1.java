@@ -52,8 +52,14 @@ public class C1 {
         Map<String, String> props = new HashMap<>();
         props.put("name", "random service");
         props.put("sleep-ms", String.valueOf(r));
-        telemetry.trackTrace("random properties",
+        telemetry.trackTrace("random properties info",
+                SeverityLevel.Information
+                props);
+        telemetry.trackTrace("random properties warn",
                 SeverityLevel.Warning,
+                props);
+        telemetry.trackTrace("random properties error",
+                SeverityLevel.Error
                 props);
 
         try {
