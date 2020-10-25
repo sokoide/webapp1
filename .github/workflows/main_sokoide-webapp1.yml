@@ -24,7 +24,7 @@ jobs:
 #      run: mvn clean install
 
     - name: Build with Gradle
-      run: ./gradlew install
+      run: ./gradlew bootJar
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
