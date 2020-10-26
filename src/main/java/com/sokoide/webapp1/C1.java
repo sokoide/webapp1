@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static com.sokoide.webapp1.Webapp1Application.telemetry;
 import static java.lang.String.format;
 
 @RestController
@@ -22,7 +23,6 @@ import static java.lang.String.format;
 @Scope("request")
 public class C1 {
     private Random rand = new Random();
-    private TelemetryClient telemetry = new TelemetryClient();
     private Logger logger = LoggerFactory.getLogger(C1.class);
 
     public C1() {
@@ -33,7 +33,6 @@ public class C1 {
         logger.info("/foo called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("foo");
         telemetry.trackPageView("fooPage");
-        telemetry.flush();
         String ret = String.format("Hello %s", id);
         return ret;
     }
@@ -43,7 +42,6 @@ public class C1 {
         logger.info("/hello called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("hello");
         telemetry.trackPageView("helloPage");
-        telemetry.flush();
         return "Hello";
     }
 
@@ -76,8 +74,6 @@ public class C1 {
             Thread.sleep(r);
         } catch (InterruptedException e) {
             telemetry.trackException(e);
-        }finally{
-            telemetry.flush();
         }
 
         String ret = String.format("%s msec slept", r);
