@@ -5,19 +5,19 @@
         <instrumentationKey>85ec8e79-5463-4c1a-b0e3-5ee91d8ca1c9</instrumentationKey>
     </appender>
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%msg%n</pattern>
-        </encoder>
-    </appender>
+<!--    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+<!--        <encoder>-->
+<!--            <pattern>%msg%n</pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
 
     <root level="trace">
         <appender-ref ref="aiAppender"/>
     </root>
 
-    <root level="info">
-        <appender-ref ref="STDOUT"/>
-    </root>
+<!--    <root level="info">-->
+<!--        <appender-ref ref="STDOUT"/>-->
+<!--    </root>-->
 
 </configuration>
