@@ -60,6 +60,7 @@ public class C1 {
         Map<String, String> props = new HashMap<>();
         props.put("name", "random service");
         props.put("sleep-ms", String.valueOf(r));
+        telemetry.trackTrace("trace: hoge", SeverityLevel.Error);
         telemetry.trackTrace("random properties info",
                 SeverityLevel.Information,
                 props);
