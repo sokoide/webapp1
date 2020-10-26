@@ -1,0 +1,22 @@
+<configuration>
+    <appender name="aiAppender"
+              class="com.microsoft.applicationinsights.logback.ApplicationInsightsAppender">
+        <instrumentationKey>85ec8e79-5463-4c1a-b0e3-5ee91d8ca1c9</instrumentationKey>
+    </appender>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.sokoide.webapp1.C1" level="info">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <root level="info">
+        <appender-ref ref="aiAppender"/>
+    </root>
+
+</configuration>
+
