@@ -1,6 +1,8 @@
 package com.sokoide.webapp1;
 
 import com.microsoft.applicationinsights.telemetry.SeverityLevel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,12 +22,14 @@ import static java.lang.String.format;
 public class C1 {
     private Random rand = new Random();
     private TelemetryClient telemetry = new TelemetryClient();
+    private Logger logger = LoggerFactory.getLogger(C1.class);
 
     public C1() {
     }
 
     @GetMapping("/foo/{id}")
     public String fooAction(@PathVariable("id") String id) {
+        logger.info("/foo called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("foo");
         telemetry.trackPageView("fooPage");
         String ret = String.format("Hello %s", id);
@@ -34,6 +38,7 @@ public class C1 {
 
     @GetMapping("/hello")
     public String hello() {
+        logger.info("/hello called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("hello");
         telemetry.trackPageView("helloPage");
         return "Hello";
@@ -41,6 +46,8 @@ public class C1 {
 
     @GetMapping("/random")
     public String random() {
+        // log
+        logger.info("/random called. Logger Class=" + logger.getClass());
         // event
         telemetry.trackEvent("random");
         // pageview
