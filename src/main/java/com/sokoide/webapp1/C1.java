@@ -1,5 +1,6 @@
 package com.sokoide.webapp1;
 
+import com.microsoft.applicationinsights.telemetry.EventTelemetry;
 import com.microsoft.applicationinsights.telemetry.SeverityLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class C1 {
         logger.info("/foo called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("foo");
         telemetry.trackPageView("fooPage");
+        telemetry.flush();
         String ret = String.format("Hello %s", id);
         return ret;
     }
@@ -41,6 +43,7 @@ public class C1 {
         logger.info("/hello called. Logger Class=" + logger.getClass());
         telemetry.trackEvent("hello");
         telemetry.trackPageView("helloPage");
+        telemetry.flush();
         return "Hello";
     }
 
@@ -73,6 +76,8 @@ public class C1 {
             Thread.sleep(r);
         } catch (InterruptedException e) {
             telemetry.trackException(e);
+        }finally{
+            telemetry.flush();
         }
 
         String ret = String.format("%s msec slept", r);
